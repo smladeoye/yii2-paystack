@@ -53,22 +53,6 @@ class Transaction extends Component
         parent::__construct($config);
     }
 
-    public function __get($name)
-    {
-        $getter = 'get';
-        $method = $getter.ucfirst($name);
-
-        if (method_exists($this,$method))
-        {
-            return $this->$method();
-        }
-        elseif (property_exists($this,$name))
-        {
-            return $this->$name;
-        }
-        return parent::__get($name);
-    }
-
     public function setCallbackUrl($callback)
     {
         $this->callbackUrl = $callback;
@@ -165,12 +149,6 @@ class Transaction extends Component
         $this->setResponseOptions();
 
         return $this;
-    }
-
-
-    public function getConfig()
-    {
-        return $this->_config;
     }
 
     /**

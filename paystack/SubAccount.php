@@ -114,9 +114,4 @@ class SubAccount extends Component
 
         return $this;
     }
-
-    public function getConfig()
-    {
-        return $this->_config;
-    }
 }
