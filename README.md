@@ -76,12 +76,12 @@ $customer = $paystack->customer();
 
 Distinct methods available to customer:
 
-    a.  whitelist --> whitelist a particular customer.Example:
+    whitelist --> whitelist a particular customer.Example:
 
 ```php
         $customer->whitelist($customer_id);
 ```
-    b.  blacklist --> blacklist a particular customer.Example:
+    blacklist --> blacklist a particular customer.Example:
 
 ```php
         $customer->blacklist($customer_id);
