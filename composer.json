@@ -1,7 +1,7 @@
 {
-    "name": "yii2-paystack",
+    "name": "smladeoye/yii2-paystack",
     "description": "Yii 2 Paystack Payment extension (Component and widget)",
-    "keywords": ["yii2", "paystack", "payment", "component","yii extension"],
+    "keywords": ["yii2", "paystack", "payment", "component","yii extension", "smladeoye"],
     "type": "yii2-extension",
     "license": "MIT",
     "authors": [
