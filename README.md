@@ -92,7 +92,6 @@ Distinct methods available to transaction:
     redirect method can then be called to redirect to the payment page. Example:
     ```php
         $transaction->initialize(['email'=>'smladeoye@gmail.com','amount'=>'10000']);
-
         if (!$transaction->hasError)
                 $transaction->redirect();
     ```
