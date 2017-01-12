@@ -68,12 +68,14 @@ Each of the operations also have their individual methods that can be called for
 The following are the available operations and methods (all sample codes are based on the demo configuration above):
 
 1.  customer:   To initiatiate any customer operation:
+
 ```php
 $paystack = Yii::$app->paystack;
 $customer = $paystack->customer();
 ```
 
 Distinct methods available to customer:
+
     a.  whitelist --> whitelist a particular customer.Example:
 
 ```php
@@ -86,12 +88,14 @@ Distinct methods available to customer:
 ```
 
 2.  transaction:    To initiate a transaction operation:
+
 ```php
 $paystack = Yii::$app->paystack;
 $transaction = $paystack->transaction();
 ```
 Distinct methods available to transaction:
-    - a.  initialize --> initialize a transaction; an authorization url is generated from this method after which the
+
+    a.  initialize --> initialize a transaction; an authorization url is generated from this method after which the
     redirect method can then be called to redirect to the payment page. Example:
 
 ```php
@@ -99,12 +103,12 @@ Distinct methods available to transaction:
         if (!$transaction->hasError)
                 $transaction->redirect();
 ```
-    - b.  verify --> verify a transaction.Example:
+    b.  verify --> verify a transaction.Example:
 
 ```php
         $transaction->verify($trans_reference);
  ```
-    - c.  charge --> charge authorization for recurring transactions.Example:
+    c.  charge --> charge authorization for recurring transactions.Example:
 
 ```php
         $transaction->charge($options = []);
@@ -114,13 +118,13 @@ Distinct methods available to transaction:
  ```php
         $transaction->timeline($trx_id);
 ```
-    - e.  total --> get total for transactions within a specified range.Example:
+    e.  total --> get total for transactions within a specified range.Example:
 
 ```php
         $transaction->total($from,$to);
         //An array could be provided instead with the available parameters in key => value format.
 ```
-    - f.  export --> export a range of transaction details;a url is generated from this method from which the
+    f.  export --> export a range of transaction details;a url is generated from this method from which the
     file can be downloaded. To get the path simpley call the path method or call the download method to download the file. Example:
 
 ```php
@@ -129,6 +133,7 @@ Distinct methods available to transaction:
         //get download link url
         $transaction->getPath();
 ```
+
     OR to download the file, call:
 
 ```php
