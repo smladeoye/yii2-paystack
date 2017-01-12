@@ -18,7 +18,7 @@ to the require section of your composer.json file.
 
 In your configuration file (web.php) register the component with the necessary configurations, for example:
 
-```
+```php
 'components'=>[
     //  ...
     'paystack' => [
@@ -55,7 +55,7 @@ else
     // display message
     echo $transaction->message;
 
-    // save/get all the errors information regarding the operation from paystack
+    // get all the errors information regarding the operation from paystack
     $error = $transaction->getError();
 }
 
@@ -72,15 +72,18 @@ The following are the available operations and methods (all sample codes are bas
 $paystack = Yii::$app->paystack;
 $customer = $paystack->customer();
 ```
+
 Distinct methods available to customer:
     a.  whitelist --> whitelist a particular customer.Example:
-    ```php
+
+```php
         $customer->whitelist($customer_id);
-    ```
+```
     b.  blacklist --> blacklist a particular customer.Example:
-    ```php
+
+```php
         $customer->blacklist($customer_id);
-    ```
+```
 
 2.  transaction:    To initiate a transaction operation:
 ```php
@@ -90,69 +93,81 @@ $transaction = $paystack->transaction();
 Distinct methods available to transaction:
     - a.  initialize --> initialize a transaction; an authorization url is generated from this method after which the
     redirect method can then be called to redirect to the payment page. Example:
-    ```php
+
+```php
         $transaction->initialize(['email'=>'smladeoye@gmail.com','amount'=>'10000']);
         if (!$transaction->hasError)
                 $transaction->redirect();
-    ```
+```
     - b.  verify --> verify a transaction.Example:
-    ```php
+
+```php
         $transaction->verify($trans_reference);
-    ```
+ ```
     - c.  charge --> charge authorization for recurring transactions.Example:
-    ```php
+
+```php
         $transaction->charge($options = []);
-    ```
+```
     - d.  timeline --> timeline for a particular transactions.Example:
-    ```php
+
+ ```php
         $transaction->timeline($trx_id);
-    ```
-    e.  total --> get total for transactions within a specified range.Example:
-    ```php
+```
+    - e.  total --> get total for transactions within a specified range.Example:
+
+```php
         $transaction->total($from,$to);
         //An array could be provided instead with the available parameters in key => value format.
-    ```
-    f.  export --> export a range of transaction details;a url is generated from this method from which the
+```
+    - f.  export --> export a range of transaction details;a url is generated from this method from which the
     file can be downloaded. To get the path simpley call the path method or call the download method to download the file. Example:
-    ```php
+
+```php
         $transaction->export($options = []);
 
         //get download link url
         $transaction->getPath();
-    ```
+```
     OR to download the file, call:
-    ```php
+
+```php
         $transaction->download();
-    ```
+```
 
 3.  subscription:    To initiate a subscription operation:
+
 ```php
 $paystack = Yii::$app->paystack;
 $subscription = $paystack->subscription();
 ```
 Distinct methods available to transaction:
     a.  enable --> enable a customer subscription.Example:
-    ```php
-        $subscription->enable($code, $token);
-        //an array can be provided instead, containing the necessary parameters as key => value
-    ```
+
+```php
+    $subscription->enable($code, $token);
+    //an array can be provided instead, containing the necessary parameters as key => value
+```
     a.  disable --> disable a customer subscription.Example:
-    ```php
-        $subscription->disable($code, $token);
-        //an array can be provided instead, containing the necessary parameters as key => value
-    ```
+
+```php
+    $subscription->disable($code, $token);
+    //an array can be provided instead, containing the necessary parameters as key => value
+```
 
 4.  subaccount:    To initiate a subaccount operation:
+
 ```php
 $paystack = Yii::$app->paystack;
 $subaccount = $paystack->subaccount();
 ```
 Distinct methods available to transaction:
     a.  listBank --> list the available bank for creating subaccounts on the system.Example:
-    ```php
+
+```php
         $subscription->enable($code, $token);
         //an array can be provided instead, containing the necessary parameters as key => value
-    ```
+```
 
 5.  plan:    To initiate a plan operation:
 ```php
@@ -167,9 +182,10 @@ $page = $paystack->page();
 ```
 Distinct methods available to transaction:
     a.  checkAvailability --> check the availability of a particular slug.Example:
-    ```php
+
+```php
         $page->checkAvailability($slud_id);
-    ```
+```
 
 7.  settlement:    To initiate a settlement operation:
 ```php
@@ -179,26 +195,32 @@ $settlement = $paystack->settlement();
 
 The follwing methods are available:
     a.  fetchAll: The fetchall/list method is available for all operations.Example:
-    ```php
+
+```php
         $customer->fetchAll(['page'=>'','perPage'=>'']);
-    ```
+```
     b.  create: The create method is available for customer, subscription, subaccount, page and plan operations.Example:
-    ```php
+
+```php
         $customer->create(['email'=>'smladeoye@gmail.com']);
-    ```
+```
     c.  fetch   --> The fetch method is available to all operations except settlement.Example:
-    ```php
+
+```php
         $customer->fetch($customer_id);
-    ```
+```
     d.  update  --> The update method is available for customer, subaccount, page and plan operations.Example:
-    ```php
+
+```php
         $customer->update($id,$info = array();
-    ```
+```
     d.  blacklist  --> blacklist a particular customer information
-    ```php
+
+```php
         $customer->blacklist($customer_id,$info = array();
-    ```
+```
     d.  update  --> update a particular customer information
-    ```php
+
+```php
         $customer->whitelist($customer_id,$info = array();
-    ```
+```
