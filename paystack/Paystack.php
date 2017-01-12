@@ -1,5 +1,5 @@
 <?php
-namespace smladeoye\payment\paystack;
+namespace smladeoye\paystack;
 
 use yii\base\Component;
 
@@ -331,7 +331,7 @@ class Paystack extends Component
 
     public static function generateRef($length = 10)
     {
-        $characters = '0123456789abdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $characters = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
         $charactersLength = strlen($characters);
         $randomString = '';
 

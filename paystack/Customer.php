@@ -5,7 +5,7 @@
  * Date: 10/30/2016
  * Time: 10:53 AM
  */
-namespace smladeoye\payment\paystack;
+namespace smladeoye\paystack;
 
 use yii\base\Component;
 
@@ -20,7 +20,6 @@ class Customer extends Component
     public $perPage;
     public $page;
     public $risk_action;
-    private $callbackUrl;
 
     private $customer = array(
         'baseUrl'=>'/customer',

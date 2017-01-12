@@ -6,7 +6,7 @@
  * Time: 10:53 AM
  */
 //namespace components\sml\payment\paystack;
-namespace smladeoye\payment\paystack;
+namespace smladeoye\paystack;
 
 use yii\base\Component;
 
