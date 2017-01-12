@@ -14,5 +14,8 @@
         "psr-4": {
             "smladeoye\\": ""
         }
+    },
+    "require": {
+        "smladeoye/yii2-paystack": "dev-master"
     }
 }

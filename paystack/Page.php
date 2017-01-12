@@ -1,11 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: smladeoye
- * Date: 10/30/2016
- * Time: 10:53 AM
- */
-//namespace components\sml\payment\paystack;
 namespace smladeoye\paystack;
 
 use yii\base\Component;

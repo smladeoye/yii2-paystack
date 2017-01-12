@@ -1,12 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: smladeoye
- * Date: 1/11/2017
- * Time: 10:21 AM
- */
-
-namespace components\sml\paystack\widget;
+namespace smladeoye\paystack\widget;
 
 use yii\base\Widget;
 use yii\helpers\Html;
