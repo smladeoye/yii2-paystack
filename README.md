@@ -74,13 +74,13 @@ $customer = $paystack->customer();
 ```
 Distinct methods available to customer:
     a.  whitelist --> whitelist a particular customer.Example:
-            ```php
-                $customer->whitelist($customer_id);
-            ```
+    ```php
+        $customer->whitelist($customer_id);
+    ```
     b.  blacklist --> blacklist a particular customer.Example:
-                ```php
-                    $customer->blacklist($customer_id);
-                ```
+    ```php
+        $customer->blacklist($customer_id);
+    ```
 
 2.  transaction:    To initiate a transaction operation:
 ```php
@@ -89,7 +89,7 @@ $transaction = $paystack->transaction();
 ```
 Distinct methods available to transaction:
     a.  initialize --> initialize a transaction; an authorization url is generated from this method after which the
-                        redirect method can then be called to redirect to the payment page. Example:
+    redirect method can then be called to redirect to the payment page. Example:
     ```php
         $transaction->initialize(['email'=>'smladeoye@gmail.com','amount'=>'10000']);
 
@@ -97,35 +97,34 @@ Distinct methods available to transaction:
                 $transaction->redirect();
     ```
     b.  verify --> verify a transaction.Example:
-        ```php
-            $transaction->verify($trans_reference);
-        ```
+    ```php
+        $transaction->verify($trans_reference);
+    ```
     c.  charge --> charge authorization for recurring transactions.Example:
-            ```php
-                $transaction->charge($options = []);
-            ```
+    ```php
+        $transaction->charge($options = []);
+    ```
     d.  timeline --> timeline for a particular transactions.Example:
-                ```php
-                    $transaction->timeline($trx_id);
-                ```
+    ```php
+        $transaction->timeline($trx_id);
+    ```
     e.  total --> get total for transactions within a specified range.Example:
-                ```php
-                    $transaction->total($from,$to);
-                    //An array could be provided instead with the available parameters.
-                ```
+    ```php
+        $transaction->total($from,$to);
+        //An array could be provided instead with the available parameters in key => value format.
+    ```
     f.  export --> export a range of transaction details;a url is generated from this method from which the
-                    file can be downloaded. To get the path simpley call the path method or call the download method
-                    to download the file. Example:
-                ```php
-                    $transaction->export($options = []);
+    file can be downloaded. To get the path simpley call the path method or call the download method to download the file. Example:
+    ```php
+        $transaction->export($options = []);
 
-                    //get download link url
-                    $transaction->getPath();
-                ```
-                OR to download the file, call:
-                ```php
-                    $transaction->download();
-                ```
+        //get download link url
+        $transaction->getPath();
+    ```
+    OR to download the file, call:
+    ```php
+        $transaction->download();
+    ```
 
 3.  subscription:    To initiate a subscription operation:
 ```php
@@ -134,10 +133,10 @@ $subscription = $paystack->subscription();
 ```
 Distinct methods available to transaction:
     a.  enable --> enable a customer subscription.Example:
-        ```php
-            $subscription->enable($code, $token);
-            //an array can be provided instead, containing the necessary parameters as key => value
-        ```
+    ```php
+        $subscription->enable($code, $token);
+        //an array can be provided instead, containing the necessary parameters as key => value
+    ```
     a.  disable --> disable a customer subscription.Example:
     ```php
         $subscription->disable($code, $token);
