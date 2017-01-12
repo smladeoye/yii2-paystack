@@ -1,6 +1,5 @@
 <?php
-//namespace components\sml\payment\paystack;
-namespace components\sml\paystack;
+namespace smladeoye\payment\paystack;
 
 use yii\base\Component;
 

@@ -37,7 +37,6 @@ class PaystackWidget extends Widget
 
     public function setHandler()
     {
-
         $file = __DIR__.DIRECTORY_SEPARATOR.'_paystack.php';
 
         if (empty($this->options))

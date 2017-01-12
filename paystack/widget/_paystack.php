@@ -3,6 +3,7 @@
 
     function paystack_inline()
     {
+
         eval("var f = "+ options.callback) ;
 
         var defaultCallback = function(response){

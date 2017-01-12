@@ -5,8 +5,7 @@
  * Date: 10/30/2016
  * Time: 10:53 AM
  */
-//namespace components\sml\payment\paystack;
-namespace components\sml\paystack;
+namespace smladeoye\payment\paystack;
 
 use yii\base\Behavior;
 
