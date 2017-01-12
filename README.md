@@ -1,2 +1,2 @@
 # yii2-paystack
-YII 1 component for paystack payment integration
+YII 2 component for paystack payment integration
