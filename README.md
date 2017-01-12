@@ -88,14 +88,14 @@ $paystack = Yii::$app->paystack;
 $transaction = $paystack->transaction();
 ```
 Distinct methods available to transaction:
-    a.  initialize --> initialize a transaction; an authorization url is generated from this method after which the
+    --a.  initialize --> initialize a transaction; an authorization url is generated from this method after which the
     redirect method can then be called to redirect to the payment page. Example:
     ```php
         $transaction->initialize(['email'=>'smladeoye@gmail.com','amount'=>'10000']);
         if (!$transaction->hasError)
                 $transaction->redirect();
     ```
-    b.  verify --> verify a transaction.Example:
+    --b.  verify --> verify a transaction.Example:
     ```php
         $transaction->verify($trans_reference);
     ```
