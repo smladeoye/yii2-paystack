@@ -59,29 +59,29 @@ class Paystack extends Component
      * The customer code or email or id will be required*/
     CONST OP_CUST_BLACKLIST = 13;
 
-    /** Operation type to create a subaccount
+    /** Operation code to create a subaccount
      * The business_name, settlement_name, account_number and percentage_charge are required*/
     CONST OP_SUBACCOUNT_CREATE = 14;
 
     /**
-     * Operation type to list all subaccounts
+     * Operation code to list all subaccounts
      */
     CONST OP_SUBACCOUNT_LIST = 15;
 
     /**
-     * Operation type to fetch a particular subaccount
+     * Operation code to fetch a particular subaccount
      * the account id is required
      */
     CONST OP_SUBACCOUNT_FETCH = 16;
 
     /**
-     * Operation type to update a particular subaccount
+     * Operation code to update a particular subaccount
      * the account id is required along with the updated info
      */
     CONST OP_SUBACCOUNT_UPDATE = 17;
 
     /**
-     * Operation type to list banks associated with a subaccount
+     * Operation code to list banks associated with a subaccount
      * the account id is required along with the updated info
      */
     CONST OP_SUBACCOUNT_BANKS = 18;
@@ -114,6 +114,7 @@ class Paystack extends Component
 
     CONST OP_PAGE_AVAILABILITY = 32;
 
+    /** operation code to list settlements */
     CONST OP_SETTLEMENT_LIST = 33;
 
     /** Paystack whitelist code */
@@ -167,7 +168,11 @@ class Paystack extends Component
     /** @var boolean sets the environment for the request to LIVE when test is false */
     public $environment = self::ENV_TEST;
 
+    /** @var bool set to false to allow unsecured connection to the paystack api */
+    public $verifyPeer;
+
     public $testSecretKey;
+
     public $testPublicKey;
 
     /** @var   string live-key for the test environment */

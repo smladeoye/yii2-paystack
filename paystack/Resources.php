@@ -45,6 +45,11 @@ class Resources extends Behavior
         return $this->_config;
     }
 
+    private function verifyPeer()
+    {
+        return !($this->paystack()->verifyPeer === false);
+    }
+
     public function onBeforeSend()
     {
         if (!empty($this->_beforeSend))
@@ -147,10 +152,9 @@ class Resources extends Behavior
     {
         $ch = curl_init();
 
-        var_dump($this->setOperationUrl($operation));
         curl_setopt_array($ch, array(
                 CURLOPT_RETURNTRANSFER => 1,
-                CURLOPT_SSL_VERIFYPEER => false,
+                CURLOPT_SSL_VERIFYPEER => $this->verifyPeer(),
                 CURLOPT_URL => $this->setOperationUrl($operation),
                 CURLOPT_HTTPHEADER=>$this->paystack()->getHeader(),
             )
@@ -185,14 +189,14 @@ class Resources extends Behavior
             $this->hasError = true;
             $this->error = curl_error($ch);
         }
+        else
+        {
+            $this->setResponse($response);
+        }
         $this->afterSend();
 
         curl_close($ch);
 
-        $this->setResponse($response);
-
-        var_dump('hee');
-        //debug($this->response);
         return $this->response;
     }
 
