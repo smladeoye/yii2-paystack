@@ -11,24 +11,11 @@ class Transaction extends Component
     public $authorization_url;
     public $access_code;
     public $authorization_code;
-    public $bearer;
-    public $email;
-    public $amount;
-    public $currency;
-    public $plan;
-    public $metadata;
-    public $transaction_charge;
-    public $subaccount;
     private $callbackUrl;
 
-    public $perPage;
-    public $page;
     public $path;
-    public $customer;
-    public $status;
-    public $from;
-    public $to;
 
+    /** @var array holds the default transaction operation configuration */
     private $transaction = array(
         'baseUrl'=>'/transaction',
         'initializeUrl'=>'/initialize',
@@ -41,6 +28,10 @@ class Transaction extends Component
         'afterSend'=>array()
     );
 
+    /*Constructor method to setup paystack component transaction operation configurations
+    * @param $paystack, Paystack instance
+     *@param config, Yii2 default object configuration array
+    */
     public function __construct(Paystack $paystack,$config = [])
     {
         $this->attachBehavior('Resources',array('class'=> Resources::className()));
@@ -53,11 +44,16 @@ class Transaction extends Component
         parent::__construct($config);
     }
 
+    /**set the callback url after any transaction is made
+     * @param $callback*/
     public function setCallbackUrl($callback)
     {
         $this->callbackUrl = $callback;
     }
 
+    /** @param $options array; initialize a transaction
+     * @return $this
+     */
     public function initialize($options = null)
     {
         if ($options)
@@ -76,6 +72,10 @@ class Transaction extends Component
         return $this;
     }
 
+    /**verify a particular transaction
+     * @param $trx_ref transaction id or reference no
+     * @return $this
+    */
     public function verify($trx_ref = null)
     {
         $this->accept_array = false;
@@ -91,6 +91,10 @@ class Transaction extends Component
         return $this;
     }
 
+    /** fetch all transactions
+     *@param $options array
+     * @return $this
+     */
     public function fetchAll($options = null)
     {
         if ($options)
@@ -104,6 +108,10 @@ class Transaction extends Component
         return $this;
     }
 
+    /** fetch a particular transaction
+     * @param $id the transaction id or reference
+     * @return $this
+     */
     public function fetch($id = null)
     {
         $this->accept_array = false;
@@ -179,6 +187,9 @@ class Transaction extends Component
         return $this;
     }
 
+    /** @param $options, an array of options in key => value format
+     * @return $this
+     */
     public function export($options = null)
     {
         $this->setRequestOptions($options);
@@ -189,6 +200,9 @@ class Transaction extends Component
         return $this;
     }
 
+    /** get the authorization url generated from initializing a transaction
+     * @return $this
+     */
     public function getAuthorizationUrl()
     {
         return $this->authorization_url;
@@ -212,11 +226,13 @@ class Transaction extends Component
         return $this->reference;
     }
 
+    /** get the export url generated from performing export on transaction */
     public function getExportPath()
     {
         return $this->path;
     }
 
+    /** helper method to generate random reference which could be used in initiating a transaction*/
     public function generateRef($length = 10)
     {
         $this->reference = $this->paystack()->generateRef($length);
@@ -224,6 +240,7 @@ class Transaction extends Component
         return $this->reference;
     }
 
+    /** redirect to the authorization url after successfully gettting authorization */
     public function redirect()
     {
         $url = $this->getAuthorizationUrl();
@@ -236,6 +253,7 @@ class Transaction extends Component
         Yii::$app->response->redirect($this->getAuthorizationUrl());
     }
 
+    /** download the exported data from the export url gotten from export transaction method */
     public function download()
     {
         if (empty($this->path))

@@ -5,24 +5,7 @@ use yii\base\Component;
 
 class Subscription extends Component
 {
-    public $id;
-    public $code;
-    public $email;
-
-    public $invoices;
-    public $customer;
-    public $subscription_code;
-    public $plan;
-    public $integration;
-    public $authorization;
-    public $next_payment_date;
-    public $email_token;
-    public $created_at;
-    public $updated_at;
-    public $metadata;
-    public $perPage;
-    public $page;
-
+    /** @var array holds the default subscription operation configuration */
     private $subscription = array(
         'baseUrl'=>'/subscription',
         'disableUrl'=>'/disable',
@@ -31,6 +14,10 @@ class Subscription extends Component
         'afterSend'=>array()
     );
 
+    /*Constructor method to setup paystack component, subscription operation configurations
+    * @param $paystack, Paystack instance
+     *@param config, Yii2 default object configuration array
+    */
     public function __construct(Paystack $paystack, $config = [])
     {
         $this->attachBehavior('Resources',array('class'=> Resources::className()));
@@ -43,6 +30,10 @@ class Subscription extends Component
         parent::__construct($config);
     }
 
+    /** create a subscription
+     * @param $options array
+     * @return $this
+     */
     public function create($options = null)
     {
         $this->setRequestOptions($options);
@@ -53,6 +44,11 @@ class Subscription extends Component
         return $this;
     }
 
+    /** fetch all subscription
+     * @param $page integer|array
+     * @param $per_page string|integer
+     * @return $this
+     */
     public function fetchAll($page = null,$per_page = null)
     {
         $options = array();
@@ -70,12 +66,16 @@ class Subscription extends Component
             $this->setRequestOptions($options);
         }
 
-        $this->sendRequest(Paystack::OP_PLAN_LIST);
+        $this->sendRequest(Paystack::OP_SUBSCRIPTION_LIST);
         $this->setResponseOptions();
 
         return $this;
     }
 
+    /** fetch a particular subscription
+     * @param $id string subscription code or id
+     * @return $this
+     */
     public function fetch($id = null)
     {
         $this->accept_array = false;
@@ -88,6 +88,11 @@ class Subscription extends Component
         return $this;
     }
 
+    /** disable a customer subscription to a plan
+     * @param $code string|array subscription plan code
+     * @param $token string, the customer token
+     * @return $this
+     */
     public function disable($code = null, $token = null)
     {
         $options = array();
@@ -111,6 +116,11 @@ class Subscription extends Component
         return $this;
     }
 
+    /** enable a customer subscription to a plan
+     * @param $code string|array subscription plan code
+     * @param $token string, the customer token
+     * @return $this
+     */
     public function enable($code = null, $token = null)
     {
         $options = array();

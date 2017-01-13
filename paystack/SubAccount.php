@@ -5,15 +5,7 @@ use yii\base\Component;
 
 class SubAccount extends Component
 {
-    public $id;
-    public $code;
-    public $email;
-    public $first_name;
-    public $last_name;
-    public $metadata;
-    public $perPage;
-    public $page;
-
+    /** @var array holds the default page operation configuration */
     private $subaccount = array(
         'baseUrl'=>'/subaccount',
         'listBank'=>'/bank',
@@ -21,6 +13,10 @@ class SubAccount extends Component
         'afterSend'=>array()
     );
 
+    /*Constructor method to setup paystack component, subaccount operation configurations
+    * @param $paystack, Paystack instance
+     *@param config, Yii2 default object configuration array
+    */
     public function __construct(Paystack $paystack, $config = [])
     {
         $this->attachBehavior('Resources',array('class'=> Resources::className()));
@@ -33,6 +29,10 @@ class SubAccount extends Component
         parent::__construct($config);
     }
 
+    /** create a subaccount
+     * @param $options array
+     * @return $this
+     */
     public function create($options = null)
     {
         $this->setRequestOptions($options);
@@ -43,6 +43,11 @@ class SubAccount extends Component
         return $this;
     }
 
+    /** fetch all subaccount
+     * @param $page integer|array
+     * @param $per_page string|integer
+     * @return $this
+     */
     public function fetchAll($page = null,$per_page = null)
     {
         $options = array();
@@ -66,6 +71,10 @@ class SubAccount extends Component
         return $this;
     }
 
+    /** fetch a particular subaccount
+     * @param $id string|integer subaccount id
+     * @return $this
+     */
     public function fetch($id = null)
     {
         $this->accept_array = false;
@@ -78,6 +87,12 @@ class SubAccount extends Component
         return $this;
     }
 
+    /** update a particular subaccount info
+     * @param $account_id string|integer page id or slug
+     * @param $options array, other parameters
+     * @throws InvalidArgumentException when account_id is not provided
+     * @return $this
+     */
     public function update($account_id,$options = null)
     {
         if (is_array($account_id) || empty($account_id))
@@ -92,6 +107,11 @@ class SubAccount extends Component
         return $this;
     }
 
+    /** list all banks available on the platoform for creating subaccount
+     * @param $page string|integer|array page no
+     * @param $per_page integer
+     * @return $this
+     */
     public function listBank($page = null,$per_page = null)
     {
         $options = array();

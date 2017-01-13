@@ -5,19 +5,17 @@ use yii\base\Component;
 
 class Plan extends Component
 {
-    public $id;
-    public $code;
-    public $email;
-    public $metadata;
-    public $perPage;
-    public $page;
-
+    /** @var array holds the default plan operation configuration */
     private $plan = array(
         'baseUrl'=>'/plan',
         'beforeSend'=>array(),
         'afterSend'=>array()
     );
 
+    /*Constructor method to setup paystack component, plan operation configurations
+    * @param $paystack, Paystack instance
+     *@param config, Yii2 default object configuration array
+    */
     public function __construct(Paystack $paystack, $config = [])
     {
         $this->attachBehavior('Resources',array('class'=> Resources::className()));
@@ -30,6 +28,10 @@ class Plan extends Component
         parent::__construct($config);
     }
 
+    /** create a plan
+     * @param $options array
+     * @return $this
+     */
     public function create($options = null)
     {
         $this->setRequestOptions($options);
@@ -40,6 +42,11 @@ class Plan extends Component
         return $this;
     }
 
+    /** fetch all plans
+     * @param $page integer|array
+     * @param $per_page string|integer
+     * @return $this
+     */
     public function fetchAll($page = null,$per_page = null)
     {
         $options = array();
@@ -63,6 +70,10 @@ class Plan extends Component
         return $this;
     }
 
+    /** fetch a particular plan
+     * @param $id string|integer plan id or slug
+     * @return $this
+     */
     public function fetch($id = null)
     {
         $this->accept_array = false;
@@ -75,6 +86,12 @@ class Plan extends Component
         return $this;
     }
 
+    /** update a particular plan info
+     * @param $id string|integer page id or slug
+     * @param $options array, other parameters
+     * @throws InvalidArgumentException when account_id is not provided
+     * @return $this
+     */
     public function update($account_id,$options = null)
     {
         if (is_array($account_id) || empty($account_id))

@@ -5,16 +5,17 @@ use yii\base\Component;
 
 class Settlement extends Component
 {
-    public $from;
-    public $to;
-    public $subaccount;
-
+    /** @var array holds the default paystack component settlement operation configuration */
     private $settlement = array(
         'baseUrl'=>'/settlement',
         'beforeSend'=>array(),
         'afterSend'=>array()
     );
 
+    /*Constructor method to setup paystack component, settlement operation configurations
+    * @param $paystack, Paystack instance
+     *@param config, Yii2 default object configuration array
+    */
     public function __construct(Paystack $paystack, $config = [])
     {
         $this->attachBehavior('Resources',array('class'=> Resources::className()));
@@ -27,6 +28,11 @@ class Settlement extends Component
         parent::__construct($config);
     }
 
+    /** fetch all settlements
+     * @param $from string
+     * @param $to string
+     * @return $this
+     */
     public function fetchAll($from = null,$to = null, $subaccount = null)
     {
         $options = array();

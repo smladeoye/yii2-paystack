@@ -86,17 +86,21 @@ class Paystack extends Component
      */
     CONST OP_SUBACCOUNT_BANKS = 18;
 
+    /** Operation code to create a plan  */
     CONST OP_PLAN_CREATE = 19;
 
+    /** Operation code to list all plans  */
     CONST OP_PLAN_LIST = 20;
 
+    /** Operation code to detch a plan  */
     CONST OP_PLAN_FETCH = 21;
 
+    /** Operation code to update a plan  */
     CONST OP_PLAN_UPDATE = 22;
 
     CONST OP_SUBSCRIPTION_CREATE = 23;
 
-    CONST OP_SUBSCRIPTIONPLAN_LIST = 24;
+    CONST OP_SUBSCRIPTION_LIST = 24;
 
     CONST OP_SUBSCRIPTION_FETCH = 25;
 

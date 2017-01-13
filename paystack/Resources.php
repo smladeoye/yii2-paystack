@@ -18,10 +18,10 @@ class Resources extends Behavior
 
     public $response;
 
-    protected $status = true;
-    protected $message;
-    protected $data;
-    protected $meta;
+    public $status = true;
+    public $message;
+    public $data;
+    public $meta;
 
     protected $requestOptions = array();
 
@@ -83,7 +83,6 @@ class Resources extends Behavior
         $this->_beforeSend = $config['beforeSend'];
         $this->_afterSend = $config['afterSend'];
 
-        //debug($this->_beforeSend);
         $this->onBeforeSend();
         $this->onAfterSend();
     }
@@ -311,24 +310,6 @@ class Resources extends Behavior
                 {
                     $this->owner->$key = $data;
                 }
-            }
-        }
-    }
-
-    private function checkData($data = null)
-    {
-        if ($data == null)
-        {
-            if (empty($this->requestOptions))
-            {
-                throw new Exception('400','Set request parameters');
-            }
-        }
-        else
-        {
-            if (empty($data))
-            {
-                throw new Exception('400','Set request parameters');
             }
         }
     }

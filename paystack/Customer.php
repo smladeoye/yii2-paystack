@@ -5,16 +5,7 @@ use yii\base\Component;
 
 class Customer extends Component
 {
-    public $id;
-    public $code;
-    public $email;
-    public $first_name;
-    public $last_name;
-    public $metadata;
-    public $perPage;
-    public $page;
-    public $risk_action;
-
+    /** @var array holds the default customer operation configuration */
     private $customer = array(
         'baseUrl'=>'/customer',
         'riskActionUrl'=>'/set_risk_action',
@@ -22,6 +13,10 @@ class Customer extends Component
         'afterSend'=>array()
     );
 
+    /*Constructor method to setup paystack component consumer operation configurations
+    * @param $paystack, Paystack instance
+     *@param config, Yii2 default object configuration array
+    */
     public function __construct(Paystack $paystack, $config = [])
     {
         $this->attachBehavior('Resources',array('class'=> Resources::className()));
@@ -34,6 +29,10 @@ class Customer extends Component
         parent::__construct($config);
     }
 
+    /** create a customer
+     * @param $options array
+     * @return $this
+     */
     public function create($options = null)
     {
         if (!empty($options))
@@ -50,6 +49,11 @@ class Customer extends Component
         return $this;
     }
 
+    /** fetch all customers
+     * @param $page string|integer
+     * @param $per_page string|integer
+     * @return $this
+     */
     public function fetchAll($page = null,$per_page = null)
     {
         $options = array();
@@ -73,6 +77,10 @@ class Customer extends Component
         return $this;
     }
 
+    /** fetch a particular customer
+     * @param $id string|integer customer id
+     * @return $this
+     */
     public function fetch($id = null)
     {
         $this->accept_array = false;
@@ -85,6 +93,11 @@ class Customer extends Component
         return $this;
     }
 
+    /** update a particular customer record
+     * @param $id string|integer transaction id or reference
+     * @param $options array, other parameters
+     * @return $this
+     */
     public function update($id,$options = null)
     {
         $options['id'] = $id;
@@ -96,6 +109,10 @@ class Customer extends Component
         return $this;
     }
 
+    /** whitelist a particular customer
+     * @param $customer_id string, customer id
+     * @return $this
+     */
     public function whitelist($customer_id)
     {
         $options['risk_action'] = Paystack::WHITELIST;
@@ -109,6 +126,10 @@ class Customer extends Component
         return $this;
     }
 
+    /** blacklist a particular customer
+     * @param $customer_id string, customer id
+     * @return $this
+     */
     public function blacklist($customer_id)
     {
         $options['risk_action'] = Paystack::WHITELIST;
