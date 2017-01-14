@@ -11,7 +11,7 @@ php composer.phar require  smladeoye/yii2-paystack:dev-master
 
 or add
 
-"smladeoye/yii2-paystack": "dev-master"
+"smladeoye/yii2-paystack": "1.0.0"
 to the require section of your composer.json file.
 
 ## Configuration
