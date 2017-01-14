@@ -7,7 +7,7 @@ The preferred way to install this extension is through composer.
 
 Either run
 
-php composer.phar require  smladeoye/yii2-paystack:dev-master
+php composer.phar require  smladeoye/yii2-paystack
 
 or add
 
