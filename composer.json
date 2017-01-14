@@ -16,6 +16,6 @@
         }
     },
     "require": {
-        "yiisoft/yii2": ">2.0.1"
+        "smladeoye/yii2-paystack": "1.0"
     }
 }
