@@ -16,6 +16,6 @@
         }
     },
     "require": {
-        "smladeoye/yii2-paystack": "dev-master"
+        "smladeoye/yii2-paystack": "1.0"
     }
 }
