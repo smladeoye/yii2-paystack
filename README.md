@@ -65,12 +65,12 @@ else
 
 There are seven operations available that can be performed which have been grouped based on Paystack's own grouping.
 Each of the operations also have their individual methods that can be called for performing different actions
-(create, list -- fetchAll, fetch, update,...) which can accepts all the necessary parameters as an array.
+(create, list -- fetchAll, fetch, update,...) which can accept all the necessary parameters as an array.
 
 The following are the available operations and methods (all sample codes are based on the demo configuration above):
 
 
-1.	customer:   To initiatiate any customer operation:
+1. **customer**:   To initiatiate any customer operation:
 
 ```php
 $paystack = Yii::$app->paystack;
@@ -81,20 +81,20 @@ Distinct methods available to customer:
 
 
 
-- whitelist --> whitelist a particular customer.Example:
+- **whitelist** --> whitelist a particular customer.Example:
 
 ```php
         $customer->whitelist($customer_id);
 ```
 
 
-+ blacklist --> blacklist a particular customer.Example:
++ **blacklist** --> blacklist a particular customer.Example:
 
 ```php
         $customer->blacklist($customer_id);
 ```
 
-2.	transaction:    To initiate a transaction operation:
+2. **transaction**:    To initiate a transaction operation:
 
 ```php
 $paystack = Yii::$app->paystack;
@@ -159,14 +159,13 @@ OR to download the file, call:
 
 ```
 
-3.  subscription:    To initiate a subscription operation:
+3. **subscription**:    To initiate a subscription operation:
 
 ```php
 $paystack = Yii::$app->paystack;
 $subscription = $paystack->subscription();
 ```
-Distinct methods available to transaction:
-
+Distinct methods available to subscription:
 
 + **enable** --> enable a customer subscription.Example:
 
@@ -183,52 +182,58 @@ Distinct methods available to transaction:
     //an array can be provided instead, containing the necessary parameters as key => value
 ```
 
-4.  subaccount:    To initiate a subaccount operation:
+4. **subaccount**:    To initiate a subaccount operation:
 
 ```php
 $paystack = Yii::$app->paystack;
 $subaccount = $paystack->subaccount();
 ```
-Distinct methods available to transaction:
-
+Distinct methods available to subaccount:
 
 - **listBank** --> list the available bank for creating subaccounts on the system.Example:
 
 ```php
-
         $subscription->enable($code, $token);
         //an array can be provided instead, containing the necessary parameters as key => value
 
 ```
 
-5.	plan:    To initiate a plan operation:
+5. **plan**:    To initiate a plan operation:
 
 ```php
 $paystack = Yii::$app->paystack;
 $plan = $paystack->plan();
 ```
+Plan operation contains all the basic methods (create,fetch,fetchAll,update);
 
-1.	page:    To initiate a page operation:
+6. **page**:    To initiate a page operation:
 ```php
 $paystack = Yii::$app->paystack;
 $page = $paystack->page();
 ```
-Distinct methods available to transaction:
+Distinct methods available to page:
 
-checkAvailability --> check the availability of a particular slug.Example:
+- **checkAvailability** --> check the availability of a particular slug.Example:
 
 ```php
         $page->checkAvailability($slud_id);
 ```
 
-7.  settlement:    To initiate a settlement operation:
+7.  **settlement**:    To initiate a settlement operation:
 ```php
 $paystack = Yii::$app->paystack;
 $settlement = $paystack->settlement();
 ```
+Distinct methods available to settlement:
 
-The follwing methods are available:
+- **fetchAll** --> fetch all settlements.Example:
 
+```php
+$settlement->fetchAll($from_date,$to_date);
+//an array can be provided instead, containing the necessary parameters as key => value
+```
+
+#### The follwing methods are also available:
 
 + **fetchAll**: The fetchall/list method is available for all operations.Example:
 
@@ -255,4 +260,40 @@ The follwing methods are available:
 
 ```php
         $customer->update($id,$info = array();
+```
+
+### Using the Paystack Inline Payment Widget
+
+To use the widget, call the widget from your view and set the widget parameters, example:
+
+```php
+use smladeoye\paystack\widget\PaystackWidget;
+
+    echo PaystackWidget::widget(
+        [
+        //set the text to be displayed on the button
+            'buttonText'=>'PAY',
+        //array to set other button attributes like id, class,style etc
+            'buttonOptions'=>array(
+                'class'=>'btn btn-danger',
+                'style'=>'width: 80px;',
+            ),
+        //array to set all necessary paystack inline payment options
+            'options'=>[
+                //your paystack public key
+                'key'=>Yii::$app->Paystack->testPublicKey,
+                'email'=>'smladeoye@ymail.com',
+                'ref'=>'123456789',
+                'amount'=>'200000',
+                'currency' =>'NGN',
+                'plan' =>'my-plan',
+                'quantity' =>'2',
+                //callbackUrl can be set, where the tansaction reference would be passed as GET parameter
+                'callbackUrl' =>'www.google.com',
+                //also u can override the default with the callback option, simply provide javascript anonymous function as a string
+                //'callback'=>'function(response){alert(response.trxref);};',
+            ],
+        ]
+    );
+
 ```
