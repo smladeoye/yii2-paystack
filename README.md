@@ -21,13 +21,13 @@ In your configuration file (web.php) register the component with the necessary c
 ```php
 'components'=>[
     //  ...
-    'paystack' => [
+    'Paystack' => [
         'class' => 'smladeoye\paystack\Paystack',
     	'environment' => 'test',
-    	'testPublicKey'=>'pk_test_311e89cc6b0e95f1fb53fa0eeaef6b1819f1b0f2',
-    	'testSecretKey'=>'sk_test_1a4aa18eaec6f4f3b23771edb2c60fe8d8b95cbe',
-    	'livePublicKey'=>'pk_test_311e89cc6b0e95f1fb53fa0eeaef6b1819f1b0f2',
-    	'liveSecretKey'=>'pk_test_311e89cc6b0e95f1fb53fa0eeaef6b1819f1b0f2',
+    	'testPublicKey'=>'pk_test_365589cc6b0e95f1fb53fa0eeaef6b1819f1b0f2',
+    	'testSecretKey'=>'sk_test_1a4a88eaec6f4f3b23771edb2c60fe8d8b95cbe',
+    	'livePublicKey'=>'',
+    	'liveSecretKey'=>'',
     ],
     //  ...
 ]
@@ -38,7 +38,7 @@ In your configuration file (web.php) register the component with the necessary c
 
 //Initializing a payment transaction
 
-$paystack = Yii::$app->paystack;
+$paystack = Yii::$app->Paystack;
 
 $transaction = $paystack->transaction();
 $transaction->initialize(['email'=>'smladeoye@gmail.com','amount'=>'100000','currency'=>'NGN']);
@@ -73,7 +73,7 @@ The following are the available operations and methods (all sample codes are bas
 1. **customer**:   To initiatiate any customer operation:
 
 ```php
-$paystack = Yii::$app->paystack;
+$paystack = Yii::$app->Paystack;
 $customer = $paystack->customer();
 ```
 
@@ -97,7 +97,7 @@ Distinct methods available to customer:
 2. **transaction**:    To initiate a transaction operation:
 
 ```php
-$paystack = Yii::$app->paystack;
+$paystack = Yii::$app->Paystack;
 $transaction = $paystack->transaction();
 ```
 Distinct methods available to transaction:
@@ -162,7 +162,7 @@ OR to download the file, call:
 3. **subscription**:    To initiate a subscription operation:
 
 ```php
-$paystack = Yii::$app->paystack;
+$paystack = Yii::$app->Paystack;
 $subscription = $paystack->subscription();
 ```
 Distinct methods available to subscription:
@@ -185,7 +185,7 @@ Distinct methods available to subscription:
 4. **subaccount**:    To initiate a subaccount operation:
 
 ```php
-$paystack = Yii::$app->paystack;
+$paystack = Yii::$app->Paystack;
 $subaccount = $paystack->subaccount();
 ```
 Distinct methods available to subaccount:
@@ -201,14 +201,14 @@ Distinct methods available to subaccount:
 5. **plan**:    To initiate a plan operation:
 
 ```php
-$paystack = Yii::$app->paystack;
+$paystack = Yii::$app->Paystack;
 $plan = $paystack->plan();
 ```
 Plan operation contains all the basic methods (create,fetch,fetchAll,update);
 
 6. **page**:    To initiate a page operation:
 ```php
-$paystack = Yii::$app->paystack;
+$paystack = Yii::$app->Paystack;
 $page = $paystack->page();
 ```
 Distinct methods available to page:
@@ -221,7 +221,7 @@ Distinct methods available to page:
 
 7.  **settlement**:    To initiate a settlement operation:
 ```php
-$paystack = Yii::$app->paystack;
+$paystack = Yii::$app->Paystack;
 $settlement = $paystack->settlement();
 ```
 Distinct methods available to settlement:
