@@ -7,13 +7,11 @@ use Yii;
 
 class Transaction extends Component
 {
-    public $reference;
-    public $authorization_url;
-    public $access_code;
-    public $authorization_code;
+    private $reference;
+    private $authorization_url;
     private $callbackUrl;
 
-    public $path;
+    private $path;
 
     /** @var array holds the default transaction operation configuration */
     private $transaction = array(
@@ -78,7 +76,7 @@ class Transaction extends Component
     */
     public function verify($trx_ref = null)
     {
-        $this->accept_array = false;
+        $this->acceptArray(false);
 
         if ($trx_ref != null)
             $this->setRequestOptions($trx_ref);
@@ -92,13 +90,24 @@ class Transaction extends Component
     }
 
     /** fetch all transactions
-     *@param $options array
+     *@param $page array|integer, when is array it should be in key => value format with the required params
+     *@param $per_page integer
      * @return $this
      */
-    public function fetchAll($options = null)
+    public function fetchAll($page = null, $per_page = null)
     {
-        if ($options)
+        $options = array();
+        if (is_array($page))
         {
+            $this->setRequestOptions($page);
+        }
+        else
+        {
+            if ($page)
+                $options['page'] = $page;
+            if ($per_page)
+                $options['perPage'] = $per_page;
+
             $this->setRequestOptions($options);
         }
 
@@ -114,7 +123,7 @@ class Transaction extends Component
      */
     public function fetch($id = null)
     {
-        $this->accept_array = false;
+        $this->acceptArray(false);
 
         $this->setRequestOptions($id);
 
@@ -146,12 +155,9 @@ class Transaction extends Component
      */
     public function timeline($id = null)
     {
-        $this->accept_array = false;
+        $this->acceptArray(false);
 
-        if ($id != null)
-            $this->setRequestOptions($id);
-        else
-            $this->setRequestOptions($this->reference);
+        $this->setRequestOptions($id);
 
         $this->sendRequest(Paystack::OP_TRANS_TIMELINE);
         $this->setResponseOptions();
@@ -212,7 +218,7 @@ class Transaction extends Component
      * @param $refno string generated reference number
      * @return $this instance of the class
      */
-    public function setReference($refno)
+    protected function setReference($refno)
     {
         $this->reference = $refno;
         return $this;
@@ -226,8 +232,16 @@ class Transaction extends Component
         return $this->reference;
     }
 
+    /**
+     * @return string reference number which must have been set or generated
+     */
+    protected function setPath($path)
+    {
+        $this->path = $path;
+    }
+
     /** get the export url generated from performing export on transaction */
-    public function getExportPath()
+    public function getExportUrl()
     {
         return $this->path;
     }
@@ -261,6 +275,6 @@ class Transaction extends Component
             throw new Exception('Export link is empty');
         }
 
-        yii::$app->response->redirect($this->getExportPath());
+        Yii::$app->response->redirect($this->path);
     }
 }

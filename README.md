@@ -4,6 +4,7 @@ YII 2 component for paystack payment integration
 - [Installation] (https://github.com/smladeoye/yii2-paystack#installation)
 - [Configuration] (https://github.com/smladeoye/yii2-paystack#configuration)
 - [Usage] (https://github.com/smladeoye/yii2-paystack#usage-example)
+- [Event Handling for Paystack Operations] (https://github.com/smladeoye/yii2-paystack#)
 - [Paystack Inline Widget] (https://github.com/smladeoye/yii2-paystack#using-the-paystack-inline-payment-widget)
 
 
@@ -13,7 +14,15 @@ The preferred way to install this extension is through composer.
 
 Either run
 
+```
 php composer.phar require  smladeoye/yii2-paystack
+```
+
+if you have composer installed globally, then run:
+
+```
+composer require smladeoye/yii2-paystack
+```
 
 or add
 
@@ -142,7 +151,7 @@ The following are the available operations and methods (all sample codes are bas
      $transaction->export($options = []);
 
     //get download link url
-    $transaction->getPath();
+    $transaction->getExportUrl();
   ```
 
   OR to download the file, call:
@@ -249,7 +258,36 @@ The following are the available operations and methods (all sample codes are bas
 ```php
         $customer->update($id,$info = array();
 ```
+### Handling Events
+The component also supports event handling before and after every request. You can read more on
+YII2 EVENTS [HERE] (http://www.yiiframework.com/doc-2.0/guide-concept-events.html).
+You can set the event handler by configuring the property beforeSend - (event before sending
+the request) and the afterSend - (event after sending the request).
+The event handlers can be set for all operations or for specific operations; event handlers set
+for specific operations overwrites the one set for all operations.
+Example:
 
+```php
+'Paystack' => [
+            'class' => 'smladeoye\paystack\Paystack',
+            ...//other configurations just like example above
+
+            //setting the event handler for all operations before any request is made
+            'beforeSend'=>'var_dump',
+
+            //will set the event handler for all operations after any request is made
+            'afterSend'=>'var_dump',
+
+            //setting the event handler for the transaction operation; this will overwrite the event handlers above
+            'transaction'=>array(
+                //handler for the event before any request is made for a transaction operation
+                'beforeSend'=>array('var_dump'),
+
+                //handler for the event after any request is made for a transaction operation
+                'afterSend'=>array('var_dump'),
+            )
+        ]
+```
 ### Using the Paystack Inline Payment Widget
 
 To use the widget, call the widget from your view and set the widget parameters, example:

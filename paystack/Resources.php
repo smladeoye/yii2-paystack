@@ -14,14 +14,14 @@ class Resources extends Behavior
     private $errors;
     private $operationUrl;
 
-    public $accept_array = true;
+    private $accept_array = true;
 
-    public $response;
+    private $response;
 
-    public $status = true;
-    public $message;
-    public $data;
-    public $meta;
+    private $status = true;
+    private $message;
+    private $data;
+    private $meta;
 
     protected $requestOptions = array();
 
@@ -80,8 +80,8 @@ class Resources extends Behavior
     {
         $this->_config = $config;
 
-        $this->_beforeSend = $config['beforeSend'];
-        $this->_afterSend = $config['afterSend'];
+        $this->_beforeSend = $config['beforeSend']?:$this->paystack()->beforeSend;
+        $this->_afterSend = $config['afterSend']?:$this->paystack()->afterSend;
 
         $this->onBeforeSend();
         $this->onAfterSend();
@@ -103,6 +103,18 @@ class Resources extends Behavior
         {
             $this->hasError = true;
         }
+    }
+
+    public function acceptArray($value)
+    {
+        if (!is_bool($value))
+            throw new \InvalidArgumentException('Value must be boolean');
+        $this->accept_array = $value;
+    }
+
+    public function canAcceptArray()
+    {
+        return $this->accept_array;
     }
 
     public function getError()
@@ -145,6 +157,26 @@ class Resources extends Behavior
     public function getResponse()
     {
         return $this->response;
+    }
+
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    public function getMessage()
+    {
+        return $this->message;
+    }
+
+    public function getMeta()
+    {
+        return $this->meta;
+    }
+
+    public function getData()
+    {
+        return $this->data;
     }
 
     public function sendRequest($operation,$method = Paystack::METHOD_GET)

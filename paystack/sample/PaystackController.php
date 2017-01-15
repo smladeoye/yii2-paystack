@@ -116,6 +116,11 @@ class PaystackController extends Controller
         $transaction = $paystack->transaction();
 
         $transaction->export();
+
+        //get export url
+        $url = $transaction->getExportUrl();
+
+        //download the exported data
         $transaction->download();
     }
 

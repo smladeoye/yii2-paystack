@@ -76,7 +76,7 @@ class Plan extends Component
      */
     public function fetch($id = null)
     {
-        $this->accept_array = false;
+        $this->acceptArray(false);
 
         $this->setRequestOptions($id);
 
@@ -95,7 +95,7 @@ class Plan extends Component
     public function update($account_id,$options = null)
     {
         if (is_array($account_id) || empty($account_id))
-            throw new InvalidArgumentException('Invalid argument supplied for subaccount id, id cannot be empty and must be an integer or sting');
+            throw new InvalidArgumentException('Invalid argument supplied for plan id, id must be an integer or sting');
 
         $options['id'] = $account_id;
         $this->setRequestOptions($options);

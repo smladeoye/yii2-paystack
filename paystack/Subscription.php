@@ -78,7 +78,7 @@ class Subscription extends Component
      */
     public function fetch($id = null)
     {
-        $this->accept_array = false;
+        $this->acceptArray(false);
 
         $this->setRequestOptions($id);
 
