@@ -1,6 +1,9 @@
 # yii2-paystack
 YII 2 component for paystack payment integration
 
+[![Latest Stable Version](https://poser.pugx.org/smladeoye/yii2-paystack/v/stable.png)](https://packagist.org/packages/smladeoye/yii2-paystack)
+[![Total Downloads](https://poser.pugx.org/smladeoye/yii2-paystack/downloads.png)](https://packagist.org/packages/smladeoye/yii2-paystack)
+
 - [Installation] (https://github.com/smladeoye/yii2-paystack#installation)
 - [Configuration] (https://github.com/smladeoye/yii2-paystack#configuration)
 - [Usage] (https://github.com/smladeoye/yii2-paystack#usage-example)
@@ -14,20 +17,17 @@ The preferred way to install this extension is through composer.
 
 Either run
 
-```
-php composer.phar require  smladeoye/yii2-paystack
-```
-
-if you have composer installed globally, then run:
-
-```
+```bash
 composer require smladeoye/yii2-paystack
 ```
 
-or add
+**or**
 
-"smladeoye/yii2-paystack": "1.0.0"
-to the require section of your composer.json file.
+add '"smladeoye/yii2-paystack": "1.0.0"' to the require section of your composer.json file, then run:
+
+```bash
+composer install
+```
 
 ## Configuration
 
@@ -51,20 +51,20 @@ In your configuration file (web.php) register the component with the necessary c
 ## Usage Example
 ```php
 
-//Initializing a payment transaction
+// Initializing a payment transaction
 
 $paystack = Yii::$app->Paystack;
 
 $transaction = $paystack->transaction();
 $transaction->initialize(['email'=>'smladeoye@gmail.com','amount'=>'100000','currency'=>'NGN']);
 
-//check if an error occured during the operation, you can check
-
-response property for response gotten for any operation
+// check if an error occured during the operation
 if (!$transaction->hasError)
 {
-    // redirect the user to the payment page gotten from the initialization
+    //response property for response gotten for any operation
     $response = $transaction->getResponse()
+
+    // redirect the user to the payment page gotten from the initialization
     $transaction->redirect();
 }
 else
