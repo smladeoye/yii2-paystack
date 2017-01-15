@@ -196,50 +196,53 @@ class Paystack extends Component
     public $header;
     public $authHeader;
 
+    public $beforeSend;
+    public $afterSend;
+
     public $transaction = array(
         'baseUrl'=>'/transaction',
         'initializeUrl'=>'/initialize',
         'verifyUrl'=>'/verify',
         'chargeUrl'=>'/charge_authorization',
-        //'beforeSend'=>array('app\models\Profile','testEvent'),
-        'afterSend'=>array()
+        'beforeSend'=>'',
+        'afterSend'=>''
     );
 
     public $customer = array(
         'baseUrl'=>'/customer',
-        'beforeSend'=>array(),
-        'afterSend'=>array()
+        'beforeSend'=>'',
+        'afterSend'=>''
     );
 
     public $subaccount = array(
         'baseUrl'=>'/subaccount',
-        'beforeSend'=>array(),
-        'afterSend'=>array()
+        'beforeSend'=>'',
+        'afterSend'=>''
     );
 
     public $plan = array(
         'baseUrl'=>'/plan',
-        'beforeSend'=>array(),
-        'afterSend'=>array()
+        'beforeSend'=>'',
+        'afterSend'=>''
     );
 
     public $page = array(
         'baseUrl'=>'/page',
         'slugAvailabilityUrl'=>'/check_slug_availability',
-        'beforeSend'=>array(),
-        'afterSend'=>array()
+        'beforeSend'=>'',
+        'afterSend'=>''
     );
 
     public $subscription = array(
         'baseUrl'=>'/subscription',
-        'beforeSend'=>array(),
-        'afterSend'=>array()
+        'beforeSend'=>'',
+        'afterSend'=>''
     );
 
     public $settlement = array(
         'baseUrl'=>'/settlement',
-        'beforeSend'=>array(),
-        'afterSend'=>array()
+        'beforeSend'=>'',
+        'afterSend'=>''
     );
 
     public function transaction()

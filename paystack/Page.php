@@ -87,7 +87,7 @@ class Page extends Component
      */
     public function fetch($id = null)
     {
-        $this->accept_array = false;
+        $this->acceptArray(false);
 
         $this->setRequestOptions($id);
 
@@ -106,7 +106,7 @@ class Page extends Component
     public function update($page_id,$options = null)
     {
         if (is_array($page_id) || empty($page_id))
-            throw new InvalidArgumentException('Invalid argument supplied for page id/slug, id cannot be empty and must be an integer or sting');
+            throw new InvalidArgumentException('Invalid argument supplied for page id/slug, id must be integer or string');
 
         $options['id'] = $page_id;
         $this->setRequestOptions($options);
@@ -123,7 +123,7 @@ class Page extends Component
      */
     public function checkAvailability($id = null)
     {
-        $this->accept_array = false;
+        $this->acceptArray(false);
 
         $this->setRequestOptions($id);
 

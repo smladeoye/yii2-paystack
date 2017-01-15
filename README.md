@@ -7,6 +7,7 @@ YII 2 component for paystack payment integration
 - [Installation] (https://github.com/smladeoye/yii2-paystack#installation)
 - [Configuration] (https://github.com/smladeoye/yii2-paystack#configuration)
 - [Usage] (https://github.com/smladeoye/yii2-paystack#usage-example)
+- [Event Handling for Paystack Operations] (https://github.com/smladeoye/yii2-paystack#handling-events)
 - [Paystack Inline Widget] (https://github.com/smladeoye/yii2-paystack#using-the-paystack-inline-payment-widget)
 
 
@@ -17,11 +18,12 @@ The preferred way to install this extension is through composer.
 Either run
 
 ```bash
-composer require  smladeoye/yii2-paystack
+composer require smladeoye/yii2-paystack
 ```
+
 **OR**
 
-add `"smladeoye/yii2-paystack": "1.0.0"` to the require section of your composer.json file, then run
+add '"smladeoye/yii2-paystack": "1.0.0"' to the require section of your composer.json file, then run:
 
 ```bash
 composer install
@@ -56,12 +58,13 @@ $paystack = Yii::$app->Paystack;
 $transaction = $paystack->transaction();
 $transaction->initialize(['email'=>'smladeoye@gmail.com','amount'=>'100000','currency'=>'NGN']);
 
-// check if an error occured during the operation, you can check
-// response property for response gotten for any operation
+// check if an error occured during the operation
 if (!$transaction->hasError)
 {
-    // redirect the user to the payment page gotten from the initialization
+    // response property for response gotten for any operation
     $response = $transaction->getResponse()
+
+    // redirect the user to the payment page gotten from the initialization
     $transaction->redirect();
 }
 else
@@ -148,7 +151,7 @@ The following are the available operations and methods (all sample codes are bas
      $transaction->export($options = []);
 
     //get download link url
-    $transaction->getPath();
+    $transaction->getExportUrl();
   ```
 
   OR to download the file, call:
@@ -232,7 +235,7 @@ The following are the available operations and methods (all sample codes are bas
 
 #### The follwing methods are also available:
 
-+ **fetchAll**: The fetchall/list method is available for all operations.Example:
++ **fetchAll**: The fetchall (list) method is available for all operations.Example:
 
 ```php
         $customer->fetchAll(['page'=>'','perPage'=>'']);
@@ -255,7 +258,36 @@ The following are the available operations and methods (all sample codes are bas
 ```php
         $customer->update($id,$info = array();
 ```
+### Handling Events
+The component also supports event handling before and after every request. You can read more on
+YII2 EVENTS [HERE] (http://www.yiiframework.com/doc-2.0/guide-concept-events.html).
+You can set the event handler by configuring the property beforeSend - (event before sending
+the request) and the afterSend - (event after sending the request).
+The event handlers can be set for all operations or for specific operations; event handlers set
+for specific operations overwrites the one set for all operations.
+Example:
 
+```php
+'Paystack' => [
+            'class' => 'smladeoye\paystack\Paystack',
+            ...//other configurations just like example above
+
+            //setting the event handler for all operations before any request is made
+            'beforeSend'=>'var_dump',
+
+            //will set the event handler for all operations after any request is made
+            'afterSend'=>'var_dump',
+
+            //setting the event handler for the transaction operation; this will overwrite the event handlers above
+            'transaction'=>array(
+                //handler for the event before any request is made for a transaction operation
+                'beforeSend'=>'var_dump',
+
+                //handler for the event after any request is made for a transaction operation
+                'afterSend'=>'var_dump',
+            )
+        ]
+```
 ### Using the Paystack Inline Payment Widget
 
 To use the widget, call the widget from your view and set the widget parameters, example:
