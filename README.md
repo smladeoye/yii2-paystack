@@ -76,23 +76,20 @@ The following are the available operations and methods (all sample codes are bas
 $paystack = Yii::$app->Paystack;
 $customer = $paystack->customer();
 ```
+  Distinct methods available to customer:
 
-Distinct methods available to customer:
+  - **whitelist** --> whitelist a particular customer.Example:
 
-
-
-- **whitelist** --> whitelist a particular customer.Example:
-
-```php
+  ```php
         $customer->whitelist($customer_id);
-```
+  ```
 
 
-+ **blacklist** --> blacklist a particular customer.Example:
+  + **blacklist** --> blacklist a particular customer.Example:
 
-```php
+  ```php
         $customer->blacklist($customer_id);
-```
+  ```
 
 2. **transaction**:    To initiate a transaction operation:
 
