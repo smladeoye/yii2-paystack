@@ -235,7 +235,7 @@ The following are the available operations and methods (all sample codes are bas
 
 #### The follwing methods are also available:
 
-+ **fetchAll**: The fetchall/list method is available for all operations.Example:
++ **fetchAll**: The fetchall (list) method is available for all operations.Example:
 
 ```php
         $customer->fetchAll(['page'=>'','perPage'=>'']);
