@@ -147,76 +147,76 @@ The following are the available operations and methods (all sample codes are bas
 
 3. **subscription**:    To initiate a subscription operation:
 
-```php
-$paystack = Yii::$app->Paystack;
-$subscription = $paystack->subscription();
-```
-Distinct methods available to subscription:
+  ```php
+  $paystack = Yii::$app->Paystack;
+  $subscription = $paystack->subscription();
+  ```
+  Distinct methods available to subscription:
 
-+ **enable** --> enable a customer subscription.Example:
+  + **enable** --> enable a customer subscription.Example:
 
-```php
-    $subscription->enable($code, $token);
-    //an array can be provided instead, containing the necessary parameters as key => value
-```
+  ```php
+      $subscription->enable($code, $token);
+      //an array can be provided instead, containing the necessary parameters as key => value
+  ```
 
 
-+ **disable** --> disable a customer subscription.Example:
+  + **disable** --> disable a customer subscription.Example:
 
-```php
-    $subscription->disable($code, $token);
-    //an array can be provided instead, containing the necessary parameters as key => value
-```
+  ```php
+      $subscription->disable($code, $token);
+      //an array can be provided instead, containing the necessary parameters as key => value
+  ```
 
 4. **subaccount**:    To initiate a subaccount operation:
 
-```php
-$paystack = Yii::$app->Paystack;
-$subaccount = $paystack->subaccount();
-```
-Distinct methods available to subaccount:
+  ```php
+  $paystack = Yii::$app->Paystack;
+  $subaccount = $paystack->subaccount();
+  ```
+  Distinct methods available to subaccount:
 
-- **listBank** --> list the available bank for creating subaccounts on the system.Example:
+  - **listBank** --> list the available bank for creating subaccounts on the system.Example:
 
-```php
-        $subaccount->enable($code, $token);
-        //an array can be provided instead, containing the necessary parameters as key => value
-```
+  ```php
+          $subaccount->enable($code, $token);
+          //an array can be provided instead, containing the necessary parameters as key => value
+  ```
 
 5. **plan**:    To initiate a plan operation:
 
-```php
-$paystack = Yii::$app->Paystack;
-$plan = $paystack->plan();
-```
-Plan operation contains all the basic methods (create,fetch,fetchAll,update);
+  ```php
+  $paystack = Yii::$app->Paystack;
+  $plan = $paystack->plan();
+  ```
+  Plan operation contains all the basic methods (create,fetch,fetchAll,update);
 
 6. **page**:    To initiate a page operation:
-```php
-$paystack = Yii::$app->Paystack;
-$page = $paystack->page();
-```
-Distinct methods available to page:
+  ```php
+  $paystack = Yii::$app->Paystack;
+  $page = $paystack->page();
+  ```
+  Distinct methods available to page:
 
-- **checkAvailability** --> check the availability of a particular slug.Example:
+  - **checkAvailability** --> check the availability of a particular slug.Example:
 
-```php
-        $page->checkAvailability($slud_id);
-```
+  ```php
+          $page->checkAvailability($slud_id);
+  ```
 
 7.  **settlement**:    To initiate a settlement operation:
-```php
-$paystack = Yii::$app->Paystack;
-$settlement = $paystack->settlement();
-```
-Distinct methods available to settlement:
+  ```php
+  $paystack = Yii::$app->Paystack;
+  $settlement = $paystack->settlement();
+  ```
+  Distinct methods available to settlement:
 
-- **fetchAll** --> fetch all settlements.Example:
+  - **fetchAll** --> fetch all settlements.Example:
 
-```php
-$settlement->fetchAll($from_date,$to_date);
-//an array can be provided instead, containing the necessary parameters as key => value
-```
+  ```php
+  $settlement->fetchAll($from_date,$to_date);
+  //an array can be provided instead, containing the necessary parameters as key => value
+  ```
 
 #### The follwing methods are also available:
 
@@ -226,20 +226,17 @@ $settlement->fetchAll($from_date,$to_date);
         $customer->fetchAll(['page'=>'','perPage'=>'']);
 ```
 
-
 + **create**: The create method is available for customer, subscription, subaccount, page and plan operations.Example:
 
 ```php
         $customer->create(['email'=>'smladeoye@gmail.com']);
 ```
 
-
 + **fetch**   --> The fetch method is available to all operations except settlement.Example:
 
 ```php
         $customer->fetch($customer_id);
 ```
-
 
 + **update**  --> The update method is available for customer, subaccount, page and plan operations.Example:
 
