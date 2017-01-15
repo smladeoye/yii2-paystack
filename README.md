@@ -72,10 +72,10 @@ The following are the available operations and methods (all sample codes are bas
 
 1. **customer**:   To initiatiate any customer operation:
 
-```php
-$paystack = Yii::$app->Paystack;
-$customer = $paystack->customer();
-```
+  ```php
+  $paystack = Yii::$app->Paystack;
+  $customer = $paystack->customer();
+  ```
   Distinct methods available to customer:
 
   - **whitelist** --> whitelist a particular customer.Example:
@@ -83,8 +83,6 @@ $customer = $paystack->customer();
   ```php
         $customer->whitelist($customer_id);
   ```
-
-
   + **blacklist** --> blacklist a particular customer.Example:
 
   ```php
@@ -93,68 +91,59 @@ $customer = $paystack->customer();
 
 2. **transaction**:    To initiate a transaction operation:
 
-```php
-$paystack = Yii::$app->Paystack;
-$transaction = $paystack->transaction();
-```
-Distinct methods available to transaction:
+  ```php
+  $paystack = Yii::$app->Paystack;
+  $transaction = $paystack->transaction();
+  ```
+  Distinct methods available to transaction:
 
-- **initialize** --> initialize a transaction; an authorization url is generated from this method after which the redirect method can then be called to redirect to the payment page. Example:
+  - **initialize** --> initialize a transaction; an authorization url is generated from this method after which the redirect method can then be called to redirect to the payment page. Example:
 
-```php
-        $transaction->initialize(['email'=>'smladeoye@gmail.com','amount'=>'10000']);
-        if (!$transaction->hasError)
-                $transaction->redirect();
-```
+  ```php
+  $transaction->initialize(['email'=>'smladeoye@gmail.com','amount'=>'10000']);
+  if (!$transaction->hasError)
+        $transaction->redirect();
+  ```
+  + **verify** --> verify a transaction.Example:
 
-
-+ **verify** --> verify a transaction.Example:
-
-```php
+  ```php
         $transaction->verify($trans_reference);
- ```
+  ```
 
+  + **charge** --> charge authorization for recurring transactions.Example:
 
-+ **charge** --> charge authorization for recurring transactions.Example:
+  ```php
+  $transaction->charge($options = []);
+  ```
 
-```php
-        $transaction->charge($options = []);
-```
+  + **timeline** --> timeline for a particular transactions.Example:
 
+  ```php
+  $transaction->timeline($trx_id);
+  ```
 
-+ **timeline** --> timeline for a particular transactions.Example:
+  + **total** --> get total for transactions within a specified range.Example:
 
- ```php
-        $transaction->timeline($trx_id);
-```
+  ```php
+   $transaction->total($from,$to);
+   //An array could be provided instead with the available parameters in key => value format.
+  ```
 
-
-+ **total** --> get total for transactions within a specified range.Example:
-
-```php
-        $transaction->total($from,$to);
-        //An array could be provided instead with the available parameters in key => value format.
-```
-
-
-+ **export** --> export a range of transaction details;a url is generated from this method from which the
+  + **export** --> export a range of transaction details;a url is generated from this method from which the
     file can be downloaded. To get the path simpley call the path method or call the download method to download the file. Example:
 
-```php
+  ```php
+     $transaction->export($options = []);
 
-        $transaction->export($options = []);
+    //get download link url
+    $transaction->getPath();
+  ```
 
-        //get download link url
-        $transaction->getPath();
-```
+  OR to download the file, call:
 
-OR to download the file, call:
-
-```php
-
+  ```php
         $transaction->download();
-
-```
+  ```
 
 3. **subscription**:    To initiate a subscription operation:
 
@@ -190,9 +179,8 @@ Distinct methods available to subaccount:
 - **listBank** --> list the available bank for creating subaccounts on the system.Example:
 
 ```php
-        $subscription->enable($code, $token);
+        $subaccount->enable($code, $token);
         //an array can be provided instead, containing the necessary parameters as key => value
-
 ```
 
 5. **plan**:    To initiate a plan operation:
