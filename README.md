@@ -6,6 +6,7 @@ YII 2 component for paystack payment integration
 [Usage] (https://github.com/smladeoye/yii2-paystack#)
 [Paystack Inline Widget] (https://github.com/smladeoye/yii2-paystack#)
 
+
 ## Installation
 
 The preferred way to install this extension is through composer.
