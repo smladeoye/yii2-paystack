@@ -1,10 +1,10 @@
 # yii2-paystack
 YII 2 component for paystack payment integration
 
-[Installation] (https://github.com/smladeoye/yii2-paystack#installation)
-[Configuration] (https://github.com/smladeoye/yii2-paystack#)
-[Usage] (https://github.com/smladeoye/yii2-paystack#)
-[Paystack Inline Widget] (https://github.com/smladeoye/yii2-paystack#)
+- [Installation] (https://github.com/smladeoye/yii2-paystack#installation)
+- [Configuration] (https://github.com/smladeoye/yii2-paystack#)
+- [Usage] (https://github.com/smladeoye/yii2-paystack#)
+- [Paystack Inline Widget] (https://github.com/smladeoye/yii2-paystack#)
 
 
 ## Installation
