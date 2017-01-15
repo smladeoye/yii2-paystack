@@ -281,10 +281,10 @@ Example:
             //setting the event handler for the transaction operation; this will overwrite the event handlers above
             'transaction'=>array(
                 //handler for the event before any request is made for a transaction operation
-                'beforeSend'=>array('var_dump'),
+                'beforeSend'=>'var_dump',
 
                 //handler for the event after any request is made for a transaction operation
-                'afterSend'=>array('var_dump'),
+                'afterSend'=>'var_dump',
             )
         ]
 ```
