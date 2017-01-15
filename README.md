@@ -4,7 +4,7 @@ YII 2 component for paystack payment integration
 - [Installation] (https://github.com/smladeoye/yii2-paystack#installation)
 - [Configuration] (https://github.com/smladeoye/yii2-paystack#configuration)
 - [Usage] (https://github.com/smladeoye/yii2-paystack#usage-example)
-- [Event Handling for Paystack Operations] (https://github.com/smladeoye/yii2-paystack#)
+- [Event Handling for Paystack Operations] (https://github.com/smladeoye/yii2-paystack#handling-events)
 - [Paystack Inline Widget] (https://github.com/smladeoye/yii2-paystack#using-the-paystack-inline-payment-widget)
 
 
