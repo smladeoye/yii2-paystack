@@ -112,7 +112,7 @@ class Resources extends Behavior
 
     public function getOperationUrl()
     {
-        return $this->paystack()->operationUrl;
+        return $this->operationUrl;
     }
 
     public function setRequestOptions($options = null)
