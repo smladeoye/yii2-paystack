@@ -290,7 +290,7 @@ class Paystack extends Component
 
     protected function getSecretKey()
     {
-        return (strtolower($this->environment) == strtolower(self::ENV_LIVE))?$this->testSecretKey:$this->testSecretKey;
+        return (strtolower($this->environment) == strtolower(self::ENV_LIVE))?$this->liveSecretKey:$this->testSecretKey;
     }
 
     public function getAuthKeys()

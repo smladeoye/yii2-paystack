@@ -281,10 +281,10 @@ Example:
             //setting the event handler for the transaction operation; this will overwrite the event handlers above
             'transaction'=>array(
                 //handler for the event before any request is made for a transaction operation
-                'beforeSend'=>'var_dump',
+                'beforeSend'=>'',
 
                 //handler for the event after any request is made for a transaction operation
-                'afterSend'=>'var_dump',
+                'afterSend'=>'',
             )
         ]
 ```
@@ -305,14 +305,21 @@ use smladeoye\paystack\widget\PaystackWidget;
                 'style'=>'width: 80px;',
             ),
         //array to set all necessary paystack inline payment options
+        //some values can be set dynamically by passing the element id as value (email,amount,currency,quantity)
             'options'=>[
                 //your paystack public key
                 'key'=>Yii::$app->Paystack->testPublicKey,
                 'email'=>'smladeoye@ymail.com',
                 'ref'=>'123456789',
-                'amount'=>'200000',
+                //'amount' => '#amount' --> the value is gotten from the html element with id = amount
+                // OR
+                'amount'=>'2000',
+                //'currency' => '#currency' --> the value is gotten from the html element with id = currency
+                // OR
                 'currency' =>'NGN',
                 'plan' =>'my-plan',
+                //'quantity' => '#quantity' --> the value is gotten from the html element with id = quantity
+                // OR
                 'quantity' =>'2',
                 //callbackUrl can be set, where the tansaction reference would be passed as GET parameter
                 'callbackUrl' =>'www.google.com',

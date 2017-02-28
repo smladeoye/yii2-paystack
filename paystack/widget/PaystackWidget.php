@@ -14,6 +14,7 @@ class PaystackWidget extends Widget
 
     public $buttonText;
 
+    private $idOptions = ['email','amount','currency','quantity'];
     private $jsScript = 'https://js.paystack.co/v1/inline.js';
 
     public function init()
@@ -21,6 +22,26 @@ class PaystackWidget extends Widget
         parent::init();
         $this->view->registerJs($this->setHandler(),View::POS_END,'paystack');
         $this->view->registerJsFile($this->jsScript,['depends' => [JqueryAsset::className()]]);
+    }
+
+    private function filterIdOptions()
+    {
+        $idOptionsList = array();
+
+        foreach ($this->idOptions as $value)
+        {
+            if  (array_key_exists($value,$this->options))
+            {
+                $hasSubstr = substr($this->options[$value],0,1) == '#';
+
+                if ($value == 'amount' && !$hasSubstr)
+                    $this->options[$value] *= 100;
+                elseif ($hasSubstr)
+                    $idOptionsList[] = $value;
+            }
+        }
+        $this->idOptions = $idOptionsList;
+        return $this->idOptions;
     }
 
     public function run()
@@ -36,7 +57,7 @@ class PaystackWidget extends Widget
         {
             throw new InvalidConfigException('Paystack options must be set');
         }
-
-        return strip_tags($this->view->renderFile($file,['options'=>$this->options]));
+        $this->filterIdOptions();
+        return strip_tags($this->view->renderFile($file,['options'=>$this->options,'idOptions'=>$this->idOptions]));
     }
 }
