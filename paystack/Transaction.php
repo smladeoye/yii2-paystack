@@ -8,7 +8,7 @@ use Yii;
 class Transaction extends Component
 {
     private $reference;
-    private $authorization_url;
+    public $authorization_url;
     private $callbackUrl;
 
     private $path;
