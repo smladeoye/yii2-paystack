@@ -307,7 +307,7 @@ class Paystack extends Component
 
     protected function setAuthorization()
     {
-        $this->authHeader = array('Authorization: Bearer '.$this->getSecretKey()/*,'Content-type: application/json'*/);
+        $this->authHeader = array('Authorization: Bearer '.$this->getSecretKey());
     }
 
     public function setHeader($headers = array())

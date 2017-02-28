@@ -273,18 +273,18 @@ Example:
             ...//other configurations just like example above
 
             //setting the event handler for all operations before any request is made
-            'beforeSend'=>'var_dump',
+            'beforeSend'=>'myFunction',
 
             //will set the event handler for all operations after any request is made
-            'afterSend'=>'var_dump',
+            'afterSend'=>'myFunction',
 
             //setting the event handler for the transaction operation; this will overwrite the event handlers above
             'transaction'=>array(
                 //handler for the event before any request is made for a transaction operation
-                'beforeSend'=>'',
+                'beforeSend'=>'myFunction',
 
                 //handler for the event after any request is made for a transaction operation
-                'afterSend'=>'',
+                'afterSend'=>'myFunction',
             )
         ]
 ```

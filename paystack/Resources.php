@@ -187,7 +187,7 @@ class Resources extends Behavior
                 CURLOPT_RETURNTRANSFER => 1,
                 CURLOPT_SSL_VERIFYPEER => $this->verifyPeer(),
                 CURLOPT_URL => $this->setOperationUrl($operation),
-                CURLOPT_HTTPHEADER=>array('Authorization: ')//$this->paystack()->getHeader(),
+                CURLOPT_HTTPHEADER => $this->paystack()->getHeader(),
             )
         );
 
